@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="arrange">
+        <form class="form" method="post" action="/admin">
+            <h1 class="intro">Welcome Admin</h1>
+            <span class="input-span">
+                <label for="email" class="label">Email</label>
+                <input type="email" name="email" id="email" required />
+            </span>
+            <span class="input-span">
+                <label for="password" class="label">Password</label>
+                <input type="password" name="password" id="password" required />
+            </span>
+            <input class="submit" type="submit" value="Log in" />
+            
+            <!-- Display message if exists -->
+            <% if (message) { %>
+                <p style="color: red;"><%= message %></p>
+            <% } %>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Edit Admin</h2>
+        
+        <form action="/admin/home/adminedit" method="POST">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="<%= admin.email%>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" value="<%= admin.phone%>" required
+                pattern="^\d{10}$" title="Phone number must be exactly 10 digits" >
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+            <input type="hidden" name="id" value="<%= admin._id %>">
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

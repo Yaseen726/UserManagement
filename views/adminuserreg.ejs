@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .success {
+            color: green ;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Add New User</h2>
+
+        <form action="/admin/home/admindash/userreg" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required
+                pattern="^[A-Za-z\s]+$" title="Username should contain only letters">
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required
+                pattern="^\d{10}$" title="Phone number must be exactly 10 digits">
+            </div>
+
+            <div class="mb-3">
+                <label for="profilePic" class="form-label">Profile Picture</label>
+                <input type="file" class="form-control" id="profilePic" name="profilePic" required>
+            </div>
+            <div class="mb-3">
+                <% if (message) { %>
+                    <div class="alert <%= message.includes('already') ? 'alert-danger' : 'alert-success' %>">
+                        <%= message %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Add User</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Check if there is a message in the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('message')) {
+            // Remove the query parameter and hide the message after 2 seconds
+            setTimeout(() => {
+                history.replaceState(null, '', window.location.pathname); 
+            }, 2000); 
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

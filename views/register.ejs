@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="/style1.css">
+    <style>
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="arrange">
+            <form class="form" method="post" action="/register" enctype="multipart/form-data">
+                <h1 class="setic">Register</h1>
+                <span class="input-span">
+                    <label for="username" class="label">Username</label>
+                    <input type="text" name="username" id="username" required 
+                           pattern="^[A-Za-z\s]+$" title="Username should contain only letters" />
+                </span>
+                <span class="input-span">
+                    <label for="email" class="label">Email</label>
+                    <input type="email" name="email" id="email" required />
+                </span>
+                <span class="input-span">
+                    <label for="password" class="label">Password</label>
+                    <input type="password" name="password" id="password" required />
+                </span>
+                <span class="input-span">
+                    <label for="phone-number" class="label">Phone number</label>
+                    <input type="text" name="phone" id="number" required 
+                           pattern="^\d{10}$" title="Phone number must be exactly 10 digits" />
+                </span>
+                <span class="input-span">
+                    <label for="image" class="label">Profile Picture</label>
+                    <input type="file" name="image" required style="color: rgb(165, 78, 101);" />
+                </span>
+
+                <!-- Display the message from query parameters -->
+                <% if (message) { %>
+                    <p id="message" class="<%= message.includes('successful') ? 'success' : 'error' %>">
+                        <%= message %>
+                    </p>
+                <% } %>
+
+                <input class="submit" type="submit" value="Register" />
+                <span class="span">Already have an account? <a href="/">Log in</a></span>
+            </form>
+        </div>
+    </div>
+    
+    <!-- JavaScript to remove query parameter -->
+    <script>
+        // Check if there is a message in the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('message')) {
+            // Remove the query parameter and hide the message after 2 seconds
+            setTimeout(() => {
+                history.replaceState(null, '', window.location.pathname); 
+            }, 2000); 
+        }
+    </script>
+</body>
+</html>
